@@ -9,7 +9,7 @@ server.get('/', function(req, res) {
   res.json(data);
 });
 server.post('/newServer', function(req, res) {
-  function createServer() {
+  async function createServer() {
     var id = Math.floor(Math.random() * 1000000);
     id = id.toString();
     let srverExists = false;
@@ -24,7 +24,7 @@ server.post('/newServer', function(req, res) {
     } else if (srverExists === false) {
       data.push({
         "id" : id,
-        "key" : argon2.hash(req.body.key)
+        "key" : await argon2.hash(req.body.key)
       });
       return id;
     }
