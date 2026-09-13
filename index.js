@@ -45,4 +45,10 @@ server.post('/pushData', async function(req, res) {
       }
     }
   }
+  if (exists === true) {
+    selectedServer.data.push(req.body.data);
+    return res.status(200).send("Data has been sent");
+  } else if (exists === false) {
+    return res.status(404).send("Invaild Server ID or key.");
+  }
 });
