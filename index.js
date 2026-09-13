@@ -52,3 +52,4 @@ server.post('/pushData', async function(req, res) {
     return res.status(404).send("Invaild Server ID or key.");
   }
 });
+server.listen(3000);
