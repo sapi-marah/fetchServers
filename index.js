@@ -8,7 +8,7 @@ let data = [];
 server.get('/', function(req, res) {
   res.json(data);
 });
-server.post('/newServer', function(req, res) {
+server.post('/newServer', async function(req, res) {
   async function createServer() {
     var id = Math.floor(Math.random() * 1000000);
     id = id.toString();
@@ -34,16 +34,15 @@ server.post('/newServer', function(req, res) {
   return res.status(200).send("Your server has been created\nYour Server id is: " + id);
 });
 server.post('/pushData', async function(req, res) {
+  let exists = false;
+  let selectedServer = undefined;
   for (let srver of data) {
     if (srver.id === req.body.id) {
-      if (await argon2.verify(srver.key, req.body.key)) {
-        srver.data.push(req.body.data);
-        return res.status(200).send("Data has been sent");
-      } else {
-        return res.status(403).send("Invaild key");
+      if (await argon.verify(srver.key, req.body.key) === true) {
+        selectedServer = srver;
+        exists = true;
+        break;
       }
-    } else {
-      return res.status(404).send("Server does not exist.");
     }
   }
 });
