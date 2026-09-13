@@ -1,0 +1,9 @@
+{
+  "name" : "fetch-servers",
+  "version" : "1.0",
+  "dependencies" : {
+    "express" : "*",
+    "argon2" : "*",
+    "cors" : "*"
+  }
+}
