@@ -8,5 +8,6 @@ server.get('/', function(req, res) {
   res.json(data);
 });
 server.post('/newServer', function(req, res) {
-  data.push();
+  let id = Math.floor(Math.random() * 1000000);
+  //use a for() {} to find data
 });
