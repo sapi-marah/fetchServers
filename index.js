@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const server = require('express');
+const server = express();
 const argon2 = require('argon2');
 server.use(express.json());
 server.use(cors());
@@ -38,7 +38,7 @@ server.post('/pushData', async function(req, res) {
   let selectedServer = undefined;
   for (let srver of data) {
     if (srver.id === req.body.id) {
-      if (await argon.verify(srver.key, req.body.key) === true) {
+      if (await argon2.verify(srver.key, req.body.key) === true) {
         selectedServer = srver;
         exists = true;
         break;
