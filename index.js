@@ -29,6 +29,6 @@ server.post('/newServer', function(req, res) {
       return id;
     }
   }
-  let id = createServer();
+  let id = await createServer();
   return res.status(200).send("Your server has been created\nYour Server id is: " + id);
 });
