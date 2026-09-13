@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const server = require('express');
+const argon2 = require('argon2');
 server.use(express.json());
 server.use(cors());
 let data = [];
@@ -21,7 +22,13 @@ server.post('/newServer', function(req, res) {
       createServer();
       //Server id already exists.
     } else if (srverExists === false) {
+      data.push({
+        "id" : id,
+        "key" : argon2.hash(req.body.key)
+      });
       return id;
     }
   }
+  let id = createServer();
+  return res.status(200).send("Your server has been created\nYour Server id is: " + id);
 });
