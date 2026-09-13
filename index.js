@@ -19,7 +19,7 @@ server.post('/newServer', async function(req, res) {
       }
     }
     if (srverExists === true) {
-      createServer();
+      return createServer();
       //Server id already exists.
     } else if (srverExists === false) {
       data.push({
