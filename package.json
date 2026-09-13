@@ -8,6 +8,6 @@
   },
   "scripts" : {
     "start" : "node ./index.js"
-  }
+  },
   "author" : "Ian C. Vu"
 }
